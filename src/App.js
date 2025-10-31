@@ -7,7 +7,7 @@ function App() {
   const [error, setError] = useState(null);
 
   // Change to your server IP if ESP32 also connects
-  const API_URL = "http://15.20.52.193:5000/api/heart/latest";
+  const API_URL = "https://heartsensor-backend.onrender.com/api/heart/latest";
 
   const fetchHeartRate = async () => {
     try {
