@@ -15,7 +15,7 @@ function App() {
       if (res.data && res.data.bpm !== null && res.data.bpm !== undefined) {
         setHeartRate(res.data.bpm);
         setTimestamp(res.data.timestamp);
-        setError(null);2
+        setError(null);
       } else {
         setHeartRate(null);
       }
