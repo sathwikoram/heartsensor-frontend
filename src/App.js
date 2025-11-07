@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App() {
   const [heartRate, setHeartRate] = useState(null);
   const [timestamp, setTimestamp] = useState(null);
   const [error, setError] = useState(null);
 
-  // Change to your server IP if ESP32 also connects
   const API_URL = "https://heartsensor-backend.onrender.com/api/heart/latest";
 
   const fetchHeartRate = async () => {
@@ -21,38 +22,36 @@ function App() {
       }
     } catch (err) {
       console.error("Error fetching heart rate:", err);
-      setError("Failed to connect to backend");
+      setError("⚠️ Failed to connect to backend");
     }
   };
 
   useEffect(() => {
-    fetchHeartRate(); // initial fetch
+    fetchHeartRate();
     const interval = setInterval(fetchHeartRate, 2000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div
-      style={{
-        textAlign: "center",
-        marginTop: "80px",
-        fontFamily: "Arial, sans-serif",
-      }}
-    >
-      <h1>💓 Heart Rate Monitor</h1>
+    <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className="card shadow-lg text-center p-4 border-0 rounded-4 heart-card">
+        <h1><span className="glow-heart">💓</span> Heart Rate Monitor</h1>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {heartRate ? (
-        <>
-          <h2 style={{ fontSize: "2rem", color: "crimson" }}>{heartRate} BPM</h2>
-          <p style={{ color: "gray" }}>
-            Last updated: {new Date(timestamp).toLocaleString()}
-          </p>
-        </>
-      ) : (
-        <p>Waiting for data...</p>
-      )}
+        {error && <p className="error">{error}</p>}
+
+        {heartRate ? (
+          <>
+            <h2 className="bpm-display">{heartRate} BPM</h2>
+            
+            <p className="text-muted mb-0">
+              Last updated: {new Date(timestamp).toLocaleString()}
+            </p>
+          </>
+        ) : (
+          <p className="waiting">Waiting for data...</p>
+        )}
+      </div>
     </div>
   );
 }

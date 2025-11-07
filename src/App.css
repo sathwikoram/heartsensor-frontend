@@ -1,38 +1,71 @@
-.App {
-  text-align: center;
+body {
+  background: #f3f4f6;
+  font-family: 'Poppins', Arial, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Card customization */
+.heart-card {
+  max-width: 400px;
+  width: 90%;
+  background-color: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.heart-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Heading */
+h1 {
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+  color: #e91e63 !important;
 }
 
-.App-link {
-  color: #61dafb;
+/* Heart rate display */
+.bpm-display {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #ff1744;
+  animation: pulse 1.5s infinite;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 1; }
 }
+
+/* Error and waiting text */
+.error {
+  color: #d32f2f;
+  background-color: #fdecea;
+  border: 1px solid #f5c2c0;
+  border-radius: 6px;
+  padding: 6px 10px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.waiting {
+  font-size: 1rem;
+  color: #777;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.glow-heart {
+  display: inline-block;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 5px #ff1744, 0 0 10px #ff1744; }
+  100% { text-shadow: 0 0 20px #ff1744, 0 0 30px #ff1744; }
+}
+
